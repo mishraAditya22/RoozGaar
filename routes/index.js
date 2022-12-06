@@ -165,10 +165,10 @@ router.get('/jobs', authRole(), (req, res) => {
 
 router.post('/view_applicants_details',authRole(),async(req,res)=>{
     let mails = new Set();
-    const urls = {
-        Dynamic : process.env.DOWNLOADURL,
-        Static : process.env.STATIC
-    };   
+    // const urls = {
+    //     Dynamic : process.env.DOWNLOADURL,
+    //     Static : process.env.STATIC
+    // };   
     try{
         const foundItem = await Job.find({_id:req.body.jobid});
         console.log(foundItem[0]);
@@ -179,7 +179,7 @@ router.post('/view_applicants_details',authRole(),async(req,res)=>{
             const Data = await SeekerProfile.find({});
             res.render('admin/job_desc',{
                 user: req.user, email: req.email,job_role:foundItem[0].job_role,
-                Detail : Data, mail:mails ,urls : urls
+                Detail : Data, mail:mails 
             });
         }
         else{
