@@ -1,0 +1,130 @@
+<%- include('header'); %>
+<h2 style="color: antiquewhite;">Candidate Profile</h2>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<style>
+    .cont{
+        justify-content: center;
+    }
+    .box{
+        width: 980px;
+        background-color: azure;
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+    #uploadForm{
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+    }
+    input.btn{
+            flex: 0.8;
+        }
+    button.btn{
+            flex: 0.15;
+        }
+
+        /* for rendering pdf file */
+        #canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+#pageNumber {
+    display: inline;
+}
+
+.previous {
+    display: inline;
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 15%;
+}
+
+.next {
+    display: inline;
+    background-color: #42A047;
+    color: white;
+    border-radius: 15%;
+}
+</style>
+<div class="cont container">
+<div class="row">
+        <div class="custom-f box">
+            <table style="width:100%">
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Name</label></td>
+                    <td width="60%" class="custom-s"><%= jobseekerprofile.name %></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Email</label></td>
+                    <td width="60%" class="custom-s"><%= jobseekerprofile.email %></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>About</label></td>
+                    <td width="60%" class="custom-s"><% var x=jobseekerprofile.about.split("\n") %>
+                        <% for(var j=0; j<x.length; j++) { %>
+                            <%= x[j] %>
+                         <% } %>   </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Contact</label></td>
+                    <td width="60%" class="custom-s"><%= jobseekerprofile.contact %></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>D.O.B</label></td>
+                    <td width="60%" class="custom-s"><%= jobseekerprofile.dateofbirth.toDateString() %></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Gender</label></td>
+                    <td width="60%" class="custom-s"><%= jobseekerprofile.gender %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Nationality</label></td>
+                    <td width="30%" class="custom-s"><%= jobseekerprofile.nationality %></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Address</label></td>
+                    <td width="60%" class="custom-s"><% var x=jobseekerprofile.address.split("\n") %>
+                        <% for(var j=0; j<x.length; j++) { %>
+                            <%= x[j] %>
+                         <% } %>   </td>
+                </tr>
+            </table><br>
+            
+            <!-- <form method="POST" action="">
+                <input value="" name="jobid"> 
+                <button type="submit" class="btn btn-info">Update Profile</button>
+            </form> -->
+
+
+            <div class="container">
+                    <a href='/uploads/<%= jobseekerprofile.email %>.pdf' download>
+                        Download Resume
+                    </a>
+
+            </div>
+
+            <script type="text/javascript">
+                document.getElementById("file").value = "";
+            </script>
+        </div>
+    <br><hr>
+</div>
+</div>

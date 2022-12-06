@@ -1,0 +1,64 @@
+<%- include('header'); %>
+<style>
+    table, th, td {
+  padding: 5px;
+}
+    .table-c{
+        justify-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
+<h1>Your Dashboard</h1>
+<div class="row table-c">
+<table style="width:100%;background-color: beige;color: black;">
+    <tr>
+        <th>Job Role</th>
+        <th>Job Description</th>
+        <th>Qualifications</th>
+        <th>Openings</th>
+        <th>Duration</th>
+        <th>Deadline</th>
+        <th>Recruiter</th>
+        <th>Status</th>
+
+    </tr>
+    <% for(var i=0; i<jobprofile.length; i++) { %>
+    <tr>
+        <td width="15%"><%= jobprofile[i].job_role %></td>
+        <td width="20%" style="text-align: left;"><% var x=jobprofile[i].job_desc.split("\n") %>
+            <% for(var j=0; j<x.length; j++) { %>
+                <br>
+                <%= x[j] %>
+             <% } %>   
+        </td>
+        <td width="20%" style="text-align: left;"><% var y=jobprofile[i].qualifications.split("\n") %>
+            <% for(var k=0; k<x.length; k++) { %>
+                <br>
+                <%= y[k] %>
+             <% } %> </td>
+        <td width="5%"><%= jobprofile[i].openings %></td>
+        <td width="5%"><%= jobprofile[i].duration %></td>
+        <td width="10%"><%= jobprofile[i].deadline.toDateString() %></td>
+        <!-- <td width="10%"><%= jobprofile[i].applicants %></td> -->
+        <td width="30%">Name: <%= jobprofile[i].jobseeker_new[0].name %> <br> Email: <%= jobprofile[i].email %>
+        </td>
+        <td width="5%"><% for(var p=0; p<jobprofile[i].hired.length; p++) { 
+            var status = "Under Review";
+            if(jobprofile[i].hired[p] == user.email ){
+                status = "Hired";
+            }
+        }
+            if(jobprofile[i].hired.length==0){
+                status = "Under Review";
+            }
+        %>
+        <%= status %><br>
+            
+        </td>
+    </tr>
+    <br>
+    <% } %>
+</table>
+</div>
+

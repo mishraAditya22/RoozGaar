@@ -1,0 +1,213 @@
+<%- include('header'); %>
+<h2>Apply for jobs</h2>
+<style>
+    .cont{
+        justify-content: center;
+    }
+    .box{
+        width: 1100px;
+        background-color: rgb(252, 252, 252);
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+    #job_roles{
+        height: 35px;
+    }
+    .fa-search{
+        font-size: 25px;
+        border: none;
+    }
+    #searchbtn{
+        border: none;
+        font-size: 22px;
+    }
+    .searchbox{
+        border: none;
+    }
+</style>
+
+
+
+
+<div class="search-container">
+    <form action="/users/jobseeker_jobsearch" method="POST">
+      <input type="text" list="roles" class="searchbox col-md-10" placeholder="Search Jobs.." name="searchbyrole" id="job_roles">
+      <datalist id="roles">
+        <% 
+            var dataObj = ["Data Scientist","Data Analyst","Data Entry","UI","UX","UI/UX","Software Developer","Software Engineer","SDE",
+            "Machine Learning", "DevOps","HR","Marketing","Web Developer","Blockchain","MLOps","Deep Learning","NLP","Natural Language Processing",
+            "Content Writer","Content Developer","Content Creator","Fundraising","Full Stack","Front End", "Back End"];
+        %>
+        <%
+            for ( let singleItem of dataObj ) {
+        %>
+            <option value='<%= singleItem %>'>
+        <%
+            }
+        %>
+      </datalist>
+      <button id="searchbtn" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+<br>
+
+<div class="cont container">
+<div class="row">
+    
+    <!-- filling up the array with 1 as marking and 0 for unmarked jobs -->
+    <% let accept_array = Array(jobprofile.length).fill("1"); %>
+
+    <!-- onclick event for marking the terms and condition accepted   -->
+
+    <% function terms(index){ %>
+        <% console.log("clicled"); %>
+        <% accept_array[index] = "3" %>
+    <% } %>
+    
+
+    <% for(var i=0; i<jobprofile.length; i++) { %>
+        <% if(jobprofile[i].approve == true){%>
+        <div class="custom-f box">
+            <!-- <label>ID </label>  <%= jobprofile[i]._id %><hr style="background-color: rgb(43, 226, 211);"> -->
+            <label> <%= jobprofile[i].recruiters_new[0].company %></label> <hr style="background-color: rgb(43, 226, 211);">
+            <table style="width:100%">
+                <!-- <tr>
+                    <td width="40%" class="custom-sl"><label>Company Name</label></td>
+                    <td width="60%" class="custom-s"><%= jobprofile[i].recruiters_new[0].company %></td>
+                </tr> -->
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Company Info.</label></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Job Role</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].job_role %></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Job Description</label></td>
+                    <td width="80%" class=" mt-5 custom-s"><%= jobprofile[i].job_desc %></td>
+                </tr>
+                <!-- <tr>
+                    <td width="20%" class="custom-sl"><label>Requirement</label></td>
+                </tr> -->
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Last date to apply</label></td>
+                    <td width="680%" class="custom-s"><%= jobprofile[i].deadline.toDateString() %></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Openings</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].openings %></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Duration</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].duration %></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Applicants</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].applied_candidates_name.length %></td>
+                </tr>
+                <!-- <tr>
+                    <td width="20%" class="custom-sl"><label>Recruiter</label></td>
+                    <td width="80%" class="custom-s"> [ <%= jobprofile[i].email %> ] </td>
+                </tr> -->
+                <tr>
+                    <% if(jobprofile[i].has_terms === "true"){ %>
+                        <!-- un-marking jobs with terms and conditions -->
+                        <% accept_array[i] = "0" %>
+                        <tr>
+                            <!-- <td width="40%" class="custom-sl"><label>Terms & Conditions</label></td>
+                            <td width="60%" class="custom-s"><%= jobprofile[i].termsAndCondition %></td> -->
+                            <td colspan="4">
+                                <!-- Button trigger modal -->
+                                <!-- style for centering the terms and condition button -->
+                                <!-- style="margin-left: 27vw; width:15vw;" -->
+                                <input class="text-center mr-3" type="checkbox" name="tick" value="0">
+                                <a style="text-decoration: underline;" data-toggle="modal" data-target="#exampleModalCenter<%= jobprofile[i]._id %>">
+                                    Terms And Conditions 
+                                </a>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter<%= jobprofile[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Terms And Conditions</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <%= jobprofile[i].termsAndCondition %>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                        
+                                        <%x = i %>
+                                        <!-- <button type="button" class="btn btn-success" data-dismiss="modal" onclick = "terms(x)" >Accept Terms & Conditions</button> -->
+                                    </div>
+                                    </div>
+                                    </div>  
+                                </td>
+                        </tr>
+                    <% } %>
+                </tr>
+                
+            </table><br>
+            <% var x = user.email;
+            var z = "Apply Now";
+            var appliedflag = 0; %>
+                <%
+                for( var j = 0; j < jobprofile[i].applied_candidates_email.length; j++ ){
+                    if(x == jobprofile[i].applied_candidates_email[j]){
+                        z = "Already Applied"; 
+                        appliedflag = 1;
+                    }
+                } 
+                 %>
+
+
+            <form method="POST" action="/users/applyjob">
+                <!-- <% if(jobprofile[i].has_terms==="true" && appliedflag===0){ %>
+                    <input value="false" name="agree_has_terms" type="checkbox">
+                    <label> I Accept All Terms And Conditions </label>
+                    <br>
+                <% } %> -->
+
+                <br>
+                <input value="<%= jobprofile[i]._id %>" name="jobid" type="hidden">
+                <input value="<%= user.name %>" name="name" type="hidden">
+                <input value="<%= user.email %>" name="email" type="hidden">
+                
+                <input value="<%= appliedflag %>" name="flag" type="hidden">
+                <input value="<%= jobprofile[i].applicants %>" name="applicants" type="hidden">
+                <button type="submit" class="btn btn-info" id="appliedbtn" value="<%= z %>"><%= z %></button>
+            </form>
+        </div>
+    <br><hr>
+    <% } } %>
+</div>
+</div>
+
+
+<!-- <script>
+    var x;
+     function terms(x){
+        console.log("clicled");
+        console.log(x);
+     } 
+</script> -->

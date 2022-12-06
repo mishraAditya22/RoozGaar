@@ -1,0 +1,52 @@
+<%- include('header'); %>
+<style>
+    table, th, td {
+  /* border: 1px solid purple; */
+  padding: 5px;
+}
+    .table-c{
+        justify-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10">
+            <h1 class="mb-5">Applicants Applied for <%=job_role %> Role</h1>
+            <table style="width:100%;background-color: beige;color: black;">
+                <tr>
+                    <th>S.no</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact No</th>
+                    <th>Date Of Apply</th>
+                    <th>Resume</th>
+                </tr>
+                    <% var ind=1 %>
+                    <% Detail.map((data,inx)=>{ %>
+                        <% if(mail.has(data.email)){ %>
+                            <tr>
+                                <td width="20%" class="custom-s"><%= ind %></td>
+
+                                <td width="20%" class="custom-s"><%= data.name %></td>
+                            
+                                <td width="20%" class="custom-s"><%= data.email %></td>
+                        
+                                <td width="20%" class="custom-s"><%= data.contact %></td>
+                            
+                                <td width="20%" class="custom-s"><%= data.date.toDateString()%></td>
+
+                                <td width="40%" class="custom-s"><a href="#"><a href='http://localhost:5011/uploads/<%= data.email %>.pdf' download>Resume</a></td>
+                            </tr>
+                            <% ind = ind+1 %>
+                        <% } %>
+                    <% }) %>
+            </table><br>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<style>
+ label{
+  font-size: bold;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:122">
+  <a class="navbar-brand" href="#"><img src="/Public/ecera.jpg" style="width: 50px;height: 40px;"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+		<a class="nav-link" href="/recruiter/register"><i class="fas fa-chalkboard-teacher"></i> Employer</a>
+      </li>
+      <li class="nav-item">
+        <a href="/users/register" type="button" class="nav-link"><i class="fas fa-user-graduate"></i> Job Seeker</a>
+      </li>
+	  
+	  <!-- <span class="navbar-text">
+        Navbar text with an inline element
+      </span> -->
+    </ul>
+	<ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a href="/about" class="nav-link">
+                <i class="fa fa-info-circle fa-fw"></i> About
+            </a>
+    </li>
+	<li class="nav-item" >
+        <a href="/users/login" type="button" class="nav-link" ><i class="fas fa-users"></i> Login</a>
+      </li>
+	</ul>
+  </div>
+</nav>
+
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <!-- <div class="card card-body"  style="border-radius: 20px;"> -->
+        <h3 class="text-center mb-3">
+           Recruiter Register
+        </h3>
+          <%- include ("../partials/messages"); %>
+        <form action="/recruiter/register" method="POST">
+          <div class="form-group">
+            <input type="name" id="name" name="name" class="form-control" placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>"
+         />
+          </div>
+          <div class="form-group">
+            <input type="email" id="email"  name="email" class="form-control" placeholder="Enter Email"  value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Create Password" value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <input type="password" id="password2" name="password2" class="form-control" placeholder="Confirm Password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+          </div>
+          <button type="submit" class="btn btn-info btn-block">
+            Register
+          </button>
+        </form>
+        <p class="lead mt-4">Already have account? <a href="/users/login" style="color:white;font-weight:bold">Login</a></p>
+        
+      </div>
+    <!-- </div> -->
+  </div>

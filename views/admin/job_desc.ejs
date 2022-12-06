@@ -1,0 +1,113 @@
+<%- include('header'); %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<style>
+    .cont{
+        justify-content: center;
+    }
+    .box{
+        width: 980px;
+        background-color: azure;
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+    #uploadForm{
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+    }
+    input.btn{
+            flex: 0.8;
+        }
+    button.btn{
+            flex: 0.15;
+        }
+
+        /* for rendering pdf file */
+        #canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+#pageNumber {
+    display: inline;
+}
+
+.previous {
+    display: inline;
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 15%;
+}
+
+.next {
+    display: inline;
+    background-color: #42A047;
+    color: white;
+    border-radius: 15%;
+}
+</style>
+<div class="cont container">
+<div class="row">
+        <h1 class="mb-5">Applicants Applied for <%=job_role %> Role</h1>
+        <div class="custom-f box">
+            <div class="col-10">
+                <table style="width:100%"">
+                    <tr>
+                        <th>S.no</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact No</th>
+                        <th>Date Of Apply</th>
+                        <th>Resume</th>
+                    </tr>
+                        <% var ind=1 %>
+                        <% Detail.map((data,inx)=>{ %>
+                            <% if(mail.has(data.email)){ %>
+                                <tr>
+                                    <td width="20%" class="custom-s"><%= ind %></td>
+    
+                                    <td width="20%" class="custom-s"><%= data.name %></td>
+                                
+                                    <td width="20%" class="custom-s"><%= data.email %></td>
+                            
+                                    <td width="20%" class="custom-s"><%= data.contact %></td>
+                                
+                                    <td width="20%" class="custom-s"><%= data.date.toDateString()%></td>
+                                    
+                                    <% let domain = urls.Dynamic || urls.static %>
+                                    <td width="20%" class="custom-s"><a href='/uploads/<%= data.email %>.pdf' download>
+                                        Resume
+                                        </a>
+                                        <script type="text/javascript">
+                                            document.getElementById("file").value = "";
+                                        </script>
+                                    </td>
+                                
+                                </tr>
+                                <% ind = ind+1 %>
+                            <% } %>
+                        <% }) %>
+                </table><br>
+            </div>
+
+            
+        </div>
+    <br><hr>
+</div>
+</div>

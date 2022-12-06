@@ -1,0 +1,88 @@
+<div class="text-center"><h2>Job Details</h2></div>
+
+<style>
+    .cont{
+        justify-content: center;
+    }
+    .box{
+        width: 1100px;
+        background-color: rgb(252, 252, 252);
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+    #job_roles{
+        height: 35px;
+    }
+    .fa-search{
+        font-size: 25px;
+        border: none;
+    }
+    #searchbtn{
+        border: none;
+        font-size: 22px;
+    }
+    .searchbox{
+        border: none;
+    }
+</style>
+
+
+<div class="cont container">
+<div class="row">
+    
+        <div class="custom-f box">
+            <label>JOB-ID </label>  <%= jobprofile._id %><hr style="background-color: rgb(43, 226, 211);">
+            <table style="width:100%">
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Job Role</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile.job_role %></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Job Description</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile.job_desc %></td>
+                </tr>
+                <!-- <tr>
+                    <td width="20%" class="custom-sl"><label>Last date to apply</label></td>
+                    <td width="680%" class="custom-s"><%= jobprofile.deadline.toDateString() %></td>
+                </tr> -->
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Openings</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile.openings %></td>
+                </tr>
+                <!-- <tr>
+                    <td width="20%" class="custom-sl"><label>Duration</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile.duration %></td>
+                </tr> -->
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Work-Role</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile.work_role %></td>
+                </tr>
+                <!-- <tr>
+                    <td width="20%" class="custom-sl"><label>Applicants - Applied</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile.applied_candidates_name.length %></td>
+                </tr> -->
+            </table><br>
+                <form action="/users/register">
+                    <button class="btn btn-info" id="appliedbtn">Apply</button>
+                </form>
+            </div>
+        <br><hr>
+    
+</div>
+</div>

@@ -1,0 +1,67 @@
+<%- include('header'); %>
+<h1>Recruiter Profile Update</h1>
+<style>
+    .cont{
+        justify-content: center;
+    }
+    .box{
+        width: 1000px;
+        background-color: azure;
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+</style>
+<div class="cont container">
+<div class="row">
+    <form action="/recruiter/update_profile" method="POST">
+        <input style="justify-content: center;justify-content: center;" name="email" value="<%= user.email %>" type="hidden">
+        <input style="justify-content: center;justify-content: center;" name="name" value="<%= user.name %>" type="hidden">
+        <div class="custom-f box">
+            <table style="width:100%">
+                <tr>
+                    <td width="40%" class="custom-sl"><label>About</label></td>
+                    <td width="60%" class="custom-s"><textarea class="input-border" cols="30" rows="5" name="about" placeholder="<%= recruiterprofile.about %>"></textarea></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Contact</label></td>
+                    <td width="60%" class="custom-s"><input class="custom-i input-border" type="text" name="contact" placeholder="<%= recruiterprofile.contact %>"></input></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Company</label></td>
+                    <td width="60%" class="custom-s"><input class="custom-i input-border" type="text" name="company" placeholder="<%= recruiterprofile.company %>"></input></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Company Info.</label></td>
+                    <td width="60%" class="custom-s"><textarea class="input-border" cols="30" rows="5" name="company_info" placeholder="<%= recruiterprofile.company_info %>"></textarea></td>
+                </tr>
+                
+            </table>
+            <br>
+
+            <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure you want to update profile details?\n Note: Your changes will be visible once you refresh the page.');">Update Profile</button>
+        </form>
+            
+            <!-- <form method="POST" action="">
+                <input value="<%= recruiterprofile.id %>" name="jobid"> 
+                <button type="submit" class="btn btn-info">Update Profile</button>
+            </form> -->
+        </div>
+    <br><hr>
+</div>
+</div>

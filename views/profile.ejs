@@ -1,0 +1,112 @@
+<%- include('header'); %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<style>
+    .cont{
+        justify-content: center;
+        
+    }
+    .box{
+        width: 1000px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+    #uploadForm{
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+    }
+    input.btn{
+            flex: 0.8;
+        }
+    button.btn{
+            flex: 0.15;
+        }
+</style>
+<div class="cont container">
+<div class="row">
+    <form action="/users/profile" method="POST">
+        <input style="justify-content: center" name="email" value="<%= user.email %>" type="hidden">
+        <input style="justify-content: center;" name="name" value="<%= user.name %>" type="hidden">
+        <div class="custom-f box">
+            <table style="width:100%">
+                <tr>
+                    <td width="40%" class="custom-sl"><label>About</label></td>
+                    <td width="60%" class="custom-s"><textarea class="input-border" cols="36" rows="3" name="about" placeholder=""></textarea></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Contact</label></td>
+                    <td width="60%" class="custom-s"><input class="custom-i input-border" type="text" name="contact" placeholder=""></input></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Age</label></td>
+                    <td width="60%" class="custom-s"><input class="custom-i input-border" type="number" name="age" placeholder=""></input></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>D.O.B</label></td>
+                    <td width="60%" class="custom-s"><input class="custom-i input-border" type="date" name="dob" placeholder=""></input></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Gender</label></td>
+                    <td width="60%" class="custom-s"><select class="custom-i input-border" type="String" name="gender">
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Transgender">Transgender</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Nationality</label></td>
+                    <td width="30%" class="custom-s"><input class="custom-i input-border" type="text" name="nationality" placeholder=""></input></td>
+                </tr>
+                <tr>
+                    <td width="40%" class="custom-sl"><label>Address</label></td>
+                    <td width="60%" class="custom-s"><textarea class="input-border" cols="36" rows="3" name="address" placeholder=""></textarea></td>
+                </tr>
+            </table><br>
+
+            <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update profile details?\n Note: Your changes will be visible once you refresh the page.');">Update Profile</button>
+        </form><br><br>
+            
+            <!-- <form method="POST" action="">
+                <input value="" name="jobid"> 
+                <button type="submit" class="btn btn-info">Update Profile</button>
+            </form> -->
+
+
+            <div class="container">
+                <form action="/users/upload" method="post" enctype="multipart/form-data">
+                    <input style="justify-content: center;justify-content: center;" name="email" value="<%= user.email %>" type="hidden">
+                    <input type="file" name="files"
+                    class="btn btn-primary" id="file"
+                    multiple required>
+                    <button class="btn btn-primary" type="submit" style="border-radius: 4px;">
+                        Upload Resume
+                    </button>
+                </form>
+            </div>
+            <script type="text/javascript">
+                document.getElementById("file").value = "";
+            </script>
+        </div>
+    <br><hr>
+</div>
+</div>

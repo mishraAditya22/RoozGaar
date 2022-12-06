@@ -1,0 +1,77 @@
+<%- include('header'); %>
+<style>
+    table, th, td {
+  padding: 5px;
+}
+    .table-c{
+        justify-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
+<h1>Your Dashboard</h1>
+<div class="row table-c">
+<table style="width:100%;background-color: beige;color: black;">
+    <tr>
+        <th>Job Role</th>
+        <th>Job Description</th>
+        <th>Qualifications</th>
+        <th>Openings</th>
+        <th>Deadline</th>
+        <th>Applicants</th>
+        <th>Hired</th>
+
+    </tr>
+    <% for(var i=0; i<jobprofile.length; i++) { %>
+        <% if(jobprofile[i].approve == true){%>
+    <tr>
+        <td width="15%"><%= jobprofile[i].job_role %></td>
+        <td width="20%" style="text-align: left;"><% var x=jobprofile[i].job_desc.split("\n") %>
+            <% for(var j=0; j<x.length; j++) { %>
+                <br>
+                <%= x[j] %>
+             <% } %>   
+        </td>
+        <td width="20%" style="text-align: left;"><% var y=jobprofile[i].qualifications.split("\n") %>
+            <% for(var k=0; k<x.length; k++) { %>
+                <br>
+                <%= y[k] %>
+             <% } %> </td>
+        <td width="5%"><%= jobprofile[i].openings %></td>
+        <td width="10%"><%= jobprofile[i].deadline.toDateString() %></td>
+        <!-- <td width="10%"><%= jobprofile[i].applicants %></td> -->
+        <td width="30%">
+            <!-- <% for(var l=0; l<jobprofile[i].applied_candidates_email.length; l++) { %>
+                <br>
+                <%= jobprofile[i].applied_candidates_email[l] %>
+                <form action="/recruiter/view_applicants" method="POST">
+                    <input style="justify-content: center;justify-content: center;" name="s_email" value="<%= jobprofile[i].applied_candidates_email[l] %>" type="hidden">
+                    <button class="btn btn-info" type="submit">View</button>
+                </form>
+
+                
+                
+             <% } %>    -->
+             <div>
+                <form action="/recruiter/candidate_list" method="POST">
+                    <input style="justify-content: center;justify-content: center;" name="s_email" value="<%= jobprofile[i].applied_candidates_email[l] %>" type="hidden">
+                    <input style="justify-content: center;justify-content: center;" name="role" value="<%= jobprofile[i].job_role %>" type="hidden">
+                    <button class="btn btn-info" type="submit">View</button>
+                </form>
+                <br>
+                <form action="/recruiter/separateJob/<%=jobprofile[i]._id %>" method="GET">
+                    <button class="btn btn-info " type="submit">Share</button>
+                </form>
+             </div>
+        </td>
+        <td width="5%"><% var z=jobprofile[i].hired %>
+            <% for(var h=0; h<z.length; h++) { %>
+                <br>
+                <%= jobprofile[i].hired[h] %>
+             <% } %> </td>
+    </tr>
+    <br>
+    <% } }%>
+</table>
+</div>
+

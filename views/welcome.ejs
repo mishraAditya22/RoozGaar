@@ -1,0 +1,263 @@
+<!-- <div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body text-center">
+      <h1><i class="fa fa-user fa-3x"></i></h1>
+      <br>
+      <h5>Create a New Account or login</h5>
+      <br>
+      <a href="/users/login" class="btn btn-info btn-block">Login</a>
+      <br>
+      <a href="/users/register" class="btn btn-success btn-block mb-2">Register</a>
+      </div>
+  </div>
+</div> -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Job Portal</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style type="text/css">
+	body{
+		background: url("bg.jpg") no-repeat;
+	}
+	/* .box{
+		margin-top: 20px;
+		background-color: black;
+		opacity: 0.2;
+		border-radius: 10px;
+		height: 350px;
+		width: 300px;
+		text-align: center;
+		box-shadow:  4px 5px 10px #4d4d4d ;
+	} */
+	.btn-c{
+		box-shadow:  2px 7px 10px #888888 ;
+		border-radius: 8px;
+		padding: 10px 20px 10px 20px;
+		margin-top: 40px;
+	}
+	.btn-c1{
+		margin-top: 7px;
+		box-shadow:  2px 7px 10px #888888 ;
+		border-radius: 8px;
+		padding: 10px 20px 10px 20px;
+	}
+	.box2{
+		/* background-color: white; */
+		/* height: 650px;
+		width: 500px; */
+		margin-right: 40px;
+		text-align: center;
+		box-shadow:  4px 5px 10px #4d4d4d ;
+	}
+	.svg{
+		width: 320px;
+		height: 220px;
+		justify-content: center;
+	}
+	.intro{
+		opacity: 1;
+		margin-top: 120px;
+		width: 380px;
+	}
+.search-container button {
+  padding: 6px 10px;
+  border-radius:7px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.searchbox{
+  margin-left:4vw;
+	height: 35px;
+	border: none;
+	width: 245px;
+	padding: 5px;
+}
+.box-job{
+  text-align: center;
+  margin-left: 3.6vw;
+	width:900px;
+    background-color: rgb(252, 252, 252);
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:122">
+  <a class="navbar-brand" href="/"><img src="/Public/ecera.jpg" style="width: 50px;height: 40px;"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+		<a class="nav-link" href="/recruiter/register"><i class="fas fa-chalkboard-teacher"></i> Employer</a>
+      </li>
+      <li class="nav-item">
+        <a href="/users/register" type="button" class="nav-link"><i class="fas fa-user-graduate"></i> Job Seeker</a>
+      </li>
+	  
+	  <!-- <span class="navbar-text">
+        Navbar text with an inline element
+      </span> -->
+    </ul>
+	<ul class="navbar-nav ml-auto">
+    <!-- <li class="nav-item">
+      <a href="/about" class="nav-link">
+                <i class="fa fa-info-circle fa-fw"></i> About
+            </a>
+    </li> -->
+	<li class="nav-item" >
+        <a href="/users/login" type="button" class="nav-link" ><i class="fas fa-users"></i> Login</a>
+      </li>
+	</ul>
+  </div>
+</nav>
+
+<!-- 	<div class="shadow-lg p-3 mb-5 bg-white rounded">Larger shadow</div> -->
+	<div class="container text-center">
+	<div class="row text-center ">
+	<div class="col-md-8 col-sm-6 text-center" style="margin-top:-65px">
+		<div class="intro text-center">
+
+ <div class="search-container text-center">
+    <form action="/users/jobsearch" method="POST">
+      <input type="text" list="roles" class="searchbox" placeholder="Search Jobs.." name="searchbyrole" id="job_roles">
+      <datalist id="roles">
+        <% 
+            var dataObj = ["Data Scientist","Data Analyst","Data Entry","UI","UX","UI/UX","Software Developer","Software Engineer","SDE",
+            "Machine Learning", "DevOps","HR","Marketing","Web Developer","Blockchain","MLOps","Deep Learning","NLP","Natural Language Processing",
+            "Content Writer","Content Developer","Content Creator","Fundraising","Full Stack","Front End", "Back End"];
+        %>
+        <%
+            for ( let singleItem of dataObj ) {
+        %>
+            <option value='<%= singleItem %>'>
+        <%
+            }
+        %>
+      </datalist>
+
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+<br>
+
+<!-- <div class="row" style="z-index:2890;"> -->
+  <% if(jobprofile.length==0){ %>
+    <% var t = "Currently no jobs posted related to your search"; %>
+    <font style="font-weight: 600;"><%= t %></font>
+  <% } %>
+    <% for(var i=0; i<jobprofile.length; i++) { %>
+      <% if(jobprofile[i].approve==true){ %>
+        <div class=" box-job" style="z-index:2800;text-align:center">
+            <!-- <label>ID </label>  <%= jobprofile[i]._id %><hr style="background-color: rgb(43, 226, 211);"> -->
+            <label style="text-align:center"> <%= jobprofile[i].recruiters_new[0].company %></label> <hr style="background-color: rgb(43, 226, 211);">
+            <table style="width:100%">
+                <tr>
+                    <td width="30%" class="custom-sl"><label>Job Role</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].job_role %></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Job Description</label></td>
+                    <td width="80%" class="custom-s"><% var x=jobprofile[i].job_desc.split("\n") %>
+                        <% for(var j=0; j<x.length; j++) { %>
+                            <br>
+                            <%= x[j] %>
+                         <% } %>   
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Requirement</label></td>
+                    <td width="80%" class="custom-s"><% var y=jobprofile[i].qualifications.split("\n") %>
+                      <br>
+                      <% for(var k=0; k<x.length; k++) { %>
+                            
+                            <%= y[k] %>
+                         <% } %> </td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Last date to apply</label></td>
+                    <td width="680%" class="custom-s"><%= jobprofile[i].deadline.toDateString() %></td>
+                </tr>
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Openings</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].openings %></td>
+                </tr>
+                <!-- <tr>
+                    <td width="20%" class="custom-sl"><label>Duration</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].duration %></td>
+                </tr> -->
+                <tr>
+                    <td width="20%" class="custom-sl"><label>Applicants</label></td>
+                    <td width="80%" class="custom-s"><%= jobprofile[i].applied_candidates_name.length %></td>
+                </tr>
+                <!-- <% if(jobprofile[i].has_terms === "true"){ %>
+                  <tr>
+                      <td width="40%" class="custom-sl"><label>Terms & Conditions</label></td>
+                      <td width="60%" class="custom-s"><%= jobprofile[i].termsAndCondition %></td>
+                  </tr>
+              <% } %> -->
+            </table><br>
+              
+            <!-- controllers -->
+            <div class="text-center">
+              <form action="/recruiter/register">
+                <button class="btn btn-info" id="appliedbtn">Apply</button>
+            </form>
+            <hr/>
+            <form action="/recruiter/separateJob/<%= jobprofile[i]._id %>">
+              <button class="btn btn-info mb-3" id="appliedbtn">Share</button>
+          </form>
+            </div>
+        </div>
+    <br><hr>
+    <% }} %>
+    
+<!-- </div> -->
+
+
+
+
+
+
+
+
+	</div>
+	</div>
+	<!-- <div class=" col-md-4 col-sm-6">
+		<img src="/Public/man-2.png" class="svg"><br><br><br><br>
+		<div>
+		<h4 style="text-align:left">With Ecera, you can search various jobs online to find the next step in your career. With tools for job search, resumes, company reviews and more... </h4>
+		<a href="/users/login" type="button" class="btn btn-light btn-rounded btn-c">Get Started</a><br><br> -->
+		<!-- <h4>Employers/Post Job :</h4>
+		<a href="/recruiter/register" type="button" class="btn btn-light btn-rounded btn-c1">Hire for job</a><br><br>
+		<h4>Let employers find you :</h4>
+		<a href="/users/register" type="button" class="btn btn-light btn-rounded btn-c1">Upload your resume</a> -->
+	<!-- </div> -->
+</div>
+</div>
+</body>
+</html>
+

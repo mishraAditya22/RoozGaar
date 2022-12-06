@@ -1,0 +1,91 @@
+<%- include('header'); %>
+<h2 style="color: antiquewhite;">ADD QUESTIONS for <%= job_role %></h2>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<style>
+    .cont{
+        justify-content: center;
+    }
+    .box{
+        width: 980px;
+        background-color: azure;
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+    #uploadForm{
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+    }
+    input.btn{
+            flex: 0.8;
+        }
+    button.btn{
+            flex: 0.15;
+        }
+
+        /* for rendering pdf file */
+        #canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+#pageNumber {
+    display: inline;
+}
+
+.previous {
+    display: inline;
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 15%;
+}
+
+.next {
+    display: inline;
+    background-color: #42A047;
+    color: white;
+    border-radius: 15%;
+}
+</style>
+<div class="cont container">
+<div class="row">
+        <!-- <h1><%= job_id %>></h1> -->
+        <div class="container-fluid">
+            <div class="row">
+                <div col-10>
+                    <div class="custom-f box">
+                        <form action="/recruiter/saveQues" method="POST">
+                            <table style="width:100%">
+                                <% for(var i=0;i<size;i++){ %>
+                                    <tr>
+                                        <td width="40%" class="custom-sl"><label>Question no <span><%=i%></span></label></td>
+                                        <td><textarea class="input-border" cols="30" rows="5"  name="quesd"></textarea></td>
+                                    </tr>
+                                <% } %>
+                            </table>
+                            <input value="<%= job_id %>" name="job_id" type="hidden">
+                            <input value="<%= size %>" name="size" type="hidden">
+                            <button type="submit" class="btn btn-dark">Post Job</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>

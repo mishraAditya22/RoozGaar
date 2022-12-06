@@ -1,0 +1,94 @@
+<h1 class="text-center mt-4">Update Job For <%=jobprofile.job_role %></h1>
+<style>
+    .cont{
+        justify-content: center;
+    }
+    .box{
+        width: 1000px;
+        background-color: azure;
+        border-radius: 18px;
+    }
+    .custom-i{
+        width: 310px;
+    }
+    .input-border{
+        border-radius: 5px;
+    }
+    .custom-s{
+        text-align: justify;
+        padding-right: 8px;
+    }
+    .custom-sl{
+        text-align: justify;
+        padding-left: 30px;
+    }
+    label{
+        font-weight: bold;
+    }
+</style>
+<div class="cont container">
+    <div class="row">
+<div class="custom-f box">
+<form action="/recruiter/updatejob/<%= jobprofile._id %>" method="POST">
+    <input style="justify-content: center;justify-content: center;" name="email" value="<%= user.email %>" type="hidden">
+    <table style="width:100%">
+        <tr>
+            <td class="custom-sl"><label>Job Role</label></td>
+            <td><input class="custom-i input-border" type="text" name="job_role" value="<%=jobprofile.job_role%>" placeholder="Job Role"></input></td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Job Description</label></td>
+            <td><textarea class="input-border" cols="30" rows="5" name="job_desc" placeholder="Job Description"><%=jobprofile.job_desc%></textarea></td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Number of Openings</label></td>
+            <td><input class="custom-i input-border" type="number" name="openings" value="<%=jobprofile.openings%>" placeholder="Number of Openings"></input></td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Qualification</label></td>
+            <td><textarea class="input-border" cols="30" rows="5" name="qualifications" placeholder="Qualification"><%=jobprofile.qualifications%></textarea></td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Duration</label></td>
+            <td><select class="custom-i input-border" type="number" name="duration" value="<%=jobprofile.duration%>">
+                <option value="1 Month">1 Month</option>
+                <option value="2 Months">2 Months</option>
+                <option value="3 Months">3 Months</option>
+                <option value="4 Months">4 Months</option>
+                <option value="5 Months">5 Months</option>
+                <option value="6 Months">6 Months</option>
+              </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Work-Role</label></td>
+            <td><select class="custom-i input-border" type="number" name="work_role" value="<%=jobprofile.work_role%>">
+                <option value="Intern">Intern</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Remote">Remote</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Select Deadline</label></td>
+            <td><input class="custom-i input-border" type="date" name="deadline" value="<%=jobprofile.deadline%>" placeholder="Select Deadline"></td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Have Any Terms & Conditions</label></td>
+                <td><select class="custom-i input-border" type="number" name="has_terms">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="custom-sl"><label>Terms & Conditions</label></td>
+            <td><textarea class="input-border" cols="30" rows="5" name="termsAndCondition" placeholder="Terms & Conditions"><%= jobprofile.termsAndCondition %></textarea></td>
+        </tr>
+    </table><br><br>
+    <input class="btn btn-success" style="justify-content: center;" type="submit"  onclick="return confirm('Are you sure you want to Update this job?\n WARNING: Previous Data Will be Wiped Out');">
+</form>
+</div>
+</div>

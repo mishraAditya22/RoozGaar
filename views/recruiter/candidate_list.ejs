@@ -1,0 +1,94 @@
+<%- include('header'); %>
+<style>
+    table, th, td {
+  padding: 5px;
+}
+    .table-c{
+        justify-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
+<h1>Applied Candidates</h1>
+<div class="row table-c">
+<table style="width:100%;background-color: beige;color: black;">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Profile</th>
+        <th>Hire</th>
+        <th>Status</th>
+    </tr>
+    <% for(var i=0; i<jobprofile.length; i++) { %>
+    <tr>
+            <% for(var l=0; l<jobprofile[i].applied_candidates_email.length; l++) { %>
+                
+                <tr>
+
+            <td width="30%">
+                <%= jobprofile[i].applied_candidates_name[l] %>
+            </td>
+            <td width="30%">
+                <%= jobprofile[i].applied_candidates_email[l] %>
+            </td>
+            <td width="10%">
+                <form action="/recruiter/view_applicants" method="POST">
+                    <input style="justify-content: center;justify-content: center;" name="s_email" value="<%= jobprofile[i].applied_candidates_email[l] %>" type="hidden">
+                    <button class="btn btn-info" type="submit" style="width: 90px;margin: 0px;">View</button>
+                </form>
+            </td>
+
+            <% var x = jobprofile[i].applied_candidates_email[l];
+            var z = "Hire";
+            var hiredflag = 0; %>
+                <%
+                for( var j = 0; j < jobprofile[i].hired.length; j++ ){
+                    if(x == jobprofile[i].hired[j]){
+                        z = "Hired"; 
+                        hiredflag = 1;
+                    }
+                } 
+                 %>
+            <td width="10%">
+                <form action="/recruiter/hire_applicant" method="POST">
+                    <input style="justify-content: center;justify-content: center;" name="s_email" value="<%= jobprofile[i].applied_candidates_email[l] %>" type="hidden">
+                    <input style="justify-content: center;justify-content: center;" name="id" value="<%= jobprofile[i]._id %>" type="hidden">
+                    <input value="<%= hiredflag %>" name="flag" type="hidden">
+                    <button class="btn btn-warning" type="submit" style="width: 90px;margin: 0px;" ><%= z %></button>
+                </form>
+            </td>
+
+            
+
+            <td><%
+                var status = "Under Review"; 
+                if(jobprofile[i].hired.length==0){
+                    status = "Under Review";
+                }
+                
+                for(var p=0; p<jobprofile[i].hired.length; p++) { 
+                if(jobprofile[i].hired[p] == jobprofile[i].applied_candidates_email[l])
+                { 
+                    status = "Hired";
+                }
+                
+                %>
+                
+                <%
+            }
+            
+                
+            %>
+            <%= status %>
+            
+            </td>
+
+            </tr>
+                
+             <% } %>   
+        </td>
+    </tr>
+    <% } %>
+</table>
+</div>
+
